@@ -1,0 +1,29 @@
+﻿<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th class="text-center" style="width:10%">Done</th>
+            <th>To Do</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var todo in ToDos)
+        {
+            <ToDoItemPart2 Text="@todo.Text" Done="@todo.Done" />
+        }
+    </tbody>
+</table>
+
+<ToDoItemEntry OnNewItem="@ProcessNewItem" />
+
+@code {
+    [Parameter] public IList<ToDoPart2> ToDos { get; set; }
+
+    void ProcessNewItem(string newItemText)
+    {
+        if (ToDos != null)
+        {
+            ToDos.Add(new ToDoPart2 { Text = newItemText });
+            StateHasChanged();
+        }
+    }
+}

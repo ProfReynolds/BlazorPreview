@@ -1,0 +1,33 @@
+﻿@page "/"
+<h1>Hello, world!</h1>
+
+    Welcome to your new app.
+
+<SurveyPrompt Title="How is Blazor working for you?" />
+
+<br />
+<hr />
+<br />
+
+<h1>Blazor Single Page Application (SPA) Demo!</h1>
+
+<h2>ToDoItem Sample Part 1</h2>
+
+<ToDoItemPart1 Text="Watch videos about Blazor" />
+<ToDoItemPart1 Text="Create own Blazor app" />
+
+<br />
+<hr />
+<br />
+
+<h2>ToDoItem Sample Part 2</h2> @* see Model.ToDoPart2 and _Imports.razor *@
+
+<ToDoItemListPart2 ToDos="@todos" />
+
+@code {
+    IList<ToDoPart2> todos = new List<ToDoPart2>
+{
+        new ToDoPart2 { Text = "Watch videos about Blazor" },
+        new ToDoPart2 { Text = "Create own Blazor app" }
+    };
+}

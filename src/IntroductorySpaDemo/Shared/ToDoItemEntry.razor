@@ -1,0 +1,41 @@
+﻿<div class="input-group input-group-lg">
+    <div class="input-group-prepend">
+        <span class="input-group-text">New ToDoItem</span>
+    </div>
+    <input type="text" class="form-control"
+           placeholder="Enter your text here"
+           @bind="Text"
+           @onkeypress="KeyPress" />
+    <div class="input-groupo-append">
+        <button class="btn btn-secondary @buttonDisabled"
+                @onclick="NewItem">
+            Add (Enter)
+        </button>
+    </div>
+</div>
+
+@code {
+
+    [Parameter] public Action<string> OnNewItem { get; set; }
+
+    string Text { get; set; }
+
+    string buttonDisabled => Text != null && Text.Length > 0 ? null : "disabled";
+
+    void NewItem()
+    {
+        if(OnNewItem != null)
+        {
+            OnNewItem(Text);
+            Text = "";
+        }
+    }
+
+    void KeyPress(KeyboardEventArgs e)
+    {
+        if(e.Key == "Enter")
+        {
+            NewItem();
+        }
+    }
+}
